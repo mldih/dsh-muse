@@ -1,0 +1,4 @@
+# Muse 学习科研助理（DSH 插件）—— 作为 bundle 安装时插入插件行
+- insert:
+    - id: dsh-muse
+      name: 'dsh-muse'

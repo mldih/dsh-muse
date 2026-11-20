@@ -1,5 +1,5 @@
 {
-  "name": "@deepseek-ai/dsh-muse",
+  "name": "dsh-muse",
   "version": "1.0.0",
   "description": "Muse 学习科研助理：DSH 插件；应用专属固定记忆库（有限额/无上限可选，超限自动压缩）、记忆条目按时间倒序直读、全会话画像与实时注入、人格设置、三态台账与条件化提醒、论文精读与统计方案、Crossref/PubMed 文献核验、研究梳理与初稿润色。",
   "type": "module",
@@ -16,6 +16,7 @@
   "files": [
     "lib/index.js",
     "lib/client.js",
+    "cordis.patch.yml",
     "README.md"
   ],
   "license": "MIT",
@@ -23,10 +24,14 @@
     "client": {
       "platform": "web",
       "inject": [
-        "@deepseek-ai/dsh-client-ui-sidebar-right",
-        "@deepseek-ai/dsh-client-ui-slots",
-        "@deepseek-ai/dsh-api-remotes"
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-sidebar-right"
       ]
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
     }
   },
   "peerDependencies": {

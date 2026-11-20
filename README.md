@@ -2,6 +2,8 @@
 
 > 一个 **DSH 插件**：把学习与科研进度变成可执行、跨会话的状态；记忆条目按时间直读，人格与画像实时注入每一次模型调用。
 
+DSHM 只是本插件的运行载体之一，插件本身面向 **dsh**：包名、插件 id、服务与命名都以 `dsh` 为准。
+
 ## 功能
 
 - **固定记忆库**：首次启用自动探测宿主（`DSH_HOME` → `DSHM_HOME` → `MUSE_HOME` → XDG → HOME → 工作区），写入 `host.json` 锚点；之后始终复用同一目录，不随会话工作区变化。
@@ -29,21 +31,48 @@
 - **设置左侧导航**：`Muse` 设置页（人格、存储上限、说明）。
 - 顶部没有渐变徽标，也不显示宿主名、记忆库路径或版本字样。
 
-## 安装
+## 安装（GitHub 源码）
+
+仓库根就是包根：`package.json`、`lib/`、`cordis.patch.yml`。全部为手写 JS，**不需要构建**。
+
+> 只 `git clone` 到本地不会自动加载；必须安装进 profile 并重启宿主。
+
+### 方式 A：插件页安装（推荐）
+
+设置 → 插件 → 安装插件，填 `github.com/<owner>/<repo>`；安装完成后**重启应用**。
+
+### 方式 B：命令行（DSHM 的 pnpm 安装队列）
 
 ```bash
-npm i dsh-muse-1.0.0.tgz
+pnpm add github.com/<owner>/<repo>
 ```
 
-在 profile 的 `cordis.patch.yml` 追加：
+### 方式 C：手动安装
+
+```bash
+git clone https://github.com/<owner>/<repo> dsh-muse
+cp -r dsh-muse "<DSH_HOME>/profiles/<profile>/node_modules/dsh-muse"
+```
+
+然后把 `dsh-muse` 加入该 profile `package.json` 的 `dsh.profile.bundles`（本包自带
+`dsh.bundle.patch`，安装为 bundle 时会自动插入插件行），或在该 profile 的 `cordis.patch.yml` 追加：
 
 ```yaml
 - insert:
     - id: dsh-muse
-      name: '@deepseek-ai/dsh-muse'
+      name: 'dsh-muse'
 ```
 
-重启宿主（profile `patchReload: startup`）。源码方式：把 `package.json` 与 `lib/` 放进 `<profile>/node_modules/@deepseek-ai/dsh-muse/`。
+重启宿主（`patchReload: startup`）。
+
+### 安装后自检
+
+- 左侧栏出现 `Muse` 图标，打开后是「Muse / 你的科研学习助手 / 三横栏」；
+- 设置左侧导航出现 `Muse`；
+- 对话里出现 `muse_*` 工具；
+- `GET /dsh-muse/api`（带 `x-muse-client: dsh-muse` 头）返回 `ok`。
+
+> 已通过种子补丁预装过 `dsh-muse` 的设备不要再从 GitHub 安装一次，否则插件行会重复。
 
 ## 记忆库结构
 

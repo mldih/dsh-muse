@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-	id: '@deepseek-ai/dsh-muse',
+	id: 'dsh-muse',
 	factory: (require) => {
 		var module = { exports: {} };
 		var exports = module.exports;
@@ -8,7 +8,7 @@ window.__ModuleLoader__.load({
 		let h = React.createElement;
 
 /**
- * @deepseek-ai/dsh-muse —— 浏览器半边（v1）。
+ * dsh-muse —— 浏览器半边（v1）。
  *
  * 入口：左侧栏图标列 → 主面板 `muse`；设置左侧导航 → Muse 设置页。
  * 面板：左侧三条灰底选中项（记忆 / 人格 / 计划），右侧内容区可上下滚动。
@@ -18,7 +18,7 @@ window.__ModuleLoader__.load({
  * 容量：有限额 / 无上限二选一；有限额时可输入数值并选 B/KB/MB/GB/TB。
  */
 
-		const ID = '@deepseek-ai/dsh-muse';
+		const ID = 'dsh-muse';
 		const PANEL = 'muse';
 		const KIND = 'muse';
 		const API = '/dsh-muse/api';
