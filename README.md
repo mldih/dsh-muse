@@ -37,18 +37,18 @@
 
 ### 方式 A：插件页安装（推荐）
 
-设置 → 插件 → 安装插件，填 `github.com/<owner>/<repo>`；安装完成后**重启应用**。
+设置 → 插件 → 安装插件，填 `github.com/midih/dsh-muse`；安装完成后**重启应用**。
 
 ### 方式 B：命令行（DSHM 的 pnpm 安装队列）
 
 ```bash
-pnpm add github.com/<owner>/<repo>
+pnpm add github.com/mldih/dsh-muse
 ```
 
 ### 方式 C：手动安装
 
 ```bash
-git clone https://github.com/<owner>/<repo> dsh-muse
+git clone http://github.com/mldih/dsh-muse
 cp -r dsh-muse "<DSH_HOME>/profiles/<profile>/node_modules/dsh-muse"
 ```
 
